@@ -37,11 +37,13 @@
 				<h3 class="cen">A tool for KEC students to plan and manage your attendance.</h3>
 				<h3>Here's a list of some cool features:</h3>
 				<ul class="bullets">
-					<li>Get notified through <b><u>Facebook</u></b> when your attendance falls below.</li>
+					<li>Get notified through <b><u>Facebook</u></b> or <b><u>email</u></b> when your attendance falls below.</li>
 					<li>Just enter the days in the application when you're absent.</li>
 					<li>Track your full Continuous Internal Assement marks.</li>
 					<li>Get notified about the total attendance percent and also single subject attendance.</li>
-					<li><b>Stay updated when there is some possibility to go on leave!!!</b></li>
+					<?php
+					//<li><b>Stay updated when there is some possibility to go on leave!!!</b></li>
+					?>
 				</ul>
 			</div>
 		</div>
