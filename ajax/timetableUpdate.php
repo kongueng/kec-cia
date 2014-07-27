@@ -15,12 +15,12 @@ if( !isset($_POST["j"]) || !isset($_POST["sub"]) || !isset($_SESSION["uemailh"])
 	$subjects = stripslashes(mysqli_real_escape_string($con, $_POST["sub"]));
 	$sub = serialize($subjects);
 	$json = json_decode($json_str,true);
-	$mon = serialize(json_encode($json["mon"]));
-	$tue = serialize(json_encode($json["tue"]));
-	$wed = serialize(json_encode($json["wed"]));
-	$thu = serialize(json_encode($json["thu"]));
-	$fri = serialize(json_encode($json["fri"]));
-	$sat = serialize(json_encode($json["sat"]));
+	$mon = base64_encode(serialize(json_encode($json["mon"])));
+	$tue = base64_encode(serialize(json_encode($json["tue"])));
+	$wed = base64_encode(serialize(json_encode($json["wed"])));
+	$thu = base64_encode(serialize(json_encode($json["thu"])));
+	$fri = base64_encode(serialize(json_encode($json["fri"])));
+	$sat = base64_encode(serialize(json_encode($json["sat"])));
 	$q1 = "INSERT INTO subjects(slist,classcode) VALUES('$sub','".$_SESSION['classcode']."')";
 	$r1 = mysqli_query($con, $q1);
 	if(!$r1) {die("Insertion Error in Sub");}

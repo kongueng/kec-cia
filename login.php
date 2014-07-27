@@ -45,7 +45,13 @@ elseif(isset($_POST["username"]) && isset($_POST["password"])) :
 			setcookie("tt","new");
 		} else {
 			$r = mysqli_fetch_array($res);
-			setcookie("mon",unserialize($r["mon"]));setcookie("tue",unserialize($r["tue"]));setcookie("wed",unserialize($r["wed"]));setcookie("thu",unserialize($r["thu"]));setcookie("fri",unserialize($r["fri"]));setcookie("sat",unserialize($r["sat"]));($r["reviewed"]==1)? setcookie("rev","1") : setcookie("rev","0");
+			setcookie("mon",unserialize(base64_decode($r["mon"])));
+			setcookie("tue",unserialize(base64_decode($r["tue"])));
+			setcookie("wed",unserialize(base64_decode($r["wed"])));
+			setcookie("thu",unserialize(base64_decode($r["thu"])));
+			setcookie("fri",unserialize(base64_decode($r["fri"])));
+			setcookie("sat",unserialize(base64_decode($r["sat"])));
+			($r["reviewed"]==1)? setcookie("rev","1") : setcookie("rev","0");
 			$q = "SELECT slist FROM subjects WHERE classcode='". $_SESSION['classcode'] ."'";
 			$res = mysqli_query($con,$q);
 			$r = mysqli_fetch_array($res);
