@@ -2,3 +2,4 @@ expired/
 .settings/
 .sass-cache/
 .project
+.openshift/
