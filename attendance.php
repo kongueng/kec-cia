@@ -266,11 +266,25 @@
 						}
 					}
 					date=$(e).text();
+<<<<<<< HEAD
 					year=$("#year").html();
 					absence=$(e).data("abs-set").toString();
 					entry=(absence==0)?0:1;
 					if(absence!=data){
 						$.ajax({type:'post',url:'/ajax/data.php',data:{entry:entry,date:date,year:year,data:data,order:JSON.stringify(pa)}}).done(function(reply){
+=======
+					year=$("#year").val();
+					absence=$(e).data("abs-set").toString();
+					entry=(absence==0)?0:1;
+					if(absence!=data){
+						$.ajax({type:'post',url:'/ajax/data.php',data:{
+							entry:entry,
+							date:date,
+							year:year,
+							data:data,
+							order:JSON.stringify(pa)
+						}}).done(function(reply){
+>>>>>>> local
 							if(reply=='0'){
 								alert("Saved!");
 							}else{

@@ -170,6 +170,7 @@ ul#navbar {
   margin-bottom: 0;
 }
 .boxer {
+	vertical-align: top;
 	width: 32%;
 	text-align: center;
 	margin: emmer(5px);
@@ -178,6 +179,16 @@ ul#navbar {
 }
 p.notice{
 	margin:0;
+}
+/*Settings page styling*/
+fieldset label {
+	display: inline-block;
+	width: 45%;
+	margin-right: 10px;
+	text-align:right;
+}
+fieldset legend {
+	font-weight: bold;
 }
 /*Container Bot code*/
 #outer_container {
@@ -311,7 +322,7 @@ input[type="text"].editInput {display:inline;width: 100px;height: 20px;padding: 
 	border: 2px solid #84B5FF;
 	border-radius: 3px;
 	height: emmer(30px);
-	width: emmer(100px);
+	min-width: emmer(100px);
 	color: white;
 	text-shadow: 0px 0px 1px white;
 	transition: 250ms all ease;
