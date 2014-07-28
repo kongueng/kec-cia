@@ -11,7 +11,9 @@
 				echo "<div class='notify'>Your email has not been verified. Please verify as soon as possible.</div>";
 		?>
 		<div id="container">
-			<?php if(isset($_COOKIE["tt"]) && ($_COOKIE["tt"]=="new")) echo "<p>There is not timetable present in our system for your class. Please <a href='/timetable.php' title='Enter timetable'>enter</a> a new timetable to get started!</p>";?>
+			<?php if(isset($_COOKIE["tt"]) && ($_COOKIE["tt"]=="new")) {
+                            echo "<p>There is no timetable present in our system for your class. Please <a href='/timetable.php' title='Enter timetable'>enter</a> a new timetable to get started!</p>";
+                        }?>
 			<h1 class="cen notice" id="dashboard">Dashboard</h1>
 			<div class="boxer">
 				<p class="notice"><?php echo $_SESSION['total_abs'];?></p>
