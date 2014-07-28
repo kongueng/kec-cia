@@ -3,3 +3,4 @@ expired/
 .sass-cache/
 .project
 .openshift/
+db/db.php
