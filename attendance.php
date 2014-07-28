@@ -266,11 +266,17 @@
 						}
 					}
 					date=$(e).text();
-					year=$("#year").html();
+					year=$("#year").val();
 					absence=$(e).data("abs-set").toString();
 					entry=(absence==0)?0:1;
 					if(absence!=data){
-						$.ajax({type:'post',url:'/ajax/data.php',data:{entry:entry,date:date,year:year,data:data,order:JSON.stringify(pa)}}).done(function(reply){
+						$.ajax({type:'post',url:'/ajax/data.php',data:{
+							entry:entry,
+							date:date,
+							year:year,
+							data:data,
+							order:JSON.stringify(pa)
+						}}).done(function(reply){
 							if(reply=='0'){
 								alert("Saved!");
 							}else{
