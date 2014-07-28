@@ -236,27 +236,6 @@ p#content{
 #closer:before {
 	content: "×";
 }
-#navigator {
-	display: inline-block;
-	vertical-align: middle;
-}
-#navigator span {
-	display: inline-block;
-	height: 18px;
-	width: 18px;
-	float: left;margin-top: 3px;
-}
-.prev {
-	background: url('/images/sprite.gif') 0px 90px;
-	transform:rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-}
-.next{background: url('/images/sprite.gif') 0px 90px;}
-span#month,span#year {
-	width: 36px;
-	text-align: center;
-}
 /* Calendar Styling */
 table, td, th {
 	border: 1px solid gray;

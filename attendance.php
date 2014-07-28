@@ -89,13 +89,29 @@
 	<div id="container">
 		<div id="target">
 			<p class="bold inline-block" style="vertical-align:middle">View Calendar for:</p>
-			<div id="navigator" class="clearfix">
-				<span id="prevMonth" class="prev"></span>
-				<span id="month"><?php echo date('n'); ?></span>
-				<span id="sep">&mdash;</span>
-				<span id="year"><?php echo date('Y'); ?></span>
-				<span id="nextMonth" class="next"></span>
-				<span id="sep"></span>
+			<div style="display:inline-block;padding:0 10px">
+				<select id="month">
+				<?php
+				$month = date('n');
+				for($i=1;$i<13;$i++) {
+					if($i!=$month) {
+						echo '<option value="'.$i.'">'.$i.'</option>';
+					} else {
+						echo '<option value="'.$i.'" selected>'.$i.'</option>';
+					}
+				}?>
+				</select>
+				<select id="year">
+				<?php
+				$year = date('Y');
+				$i = 2;
+				while(($i--) != 0) {
+					echo '<option value="'.$year.'">'.$year--.'</option>';
+				}
+				?>
+				</select>
+				<!-- <p id="year" class="inline-block"><?php echo date('Y'); ?></p>-->
+				<!-- <p id="nextMonth" class="next"></p> -->
 				<button id="changeMonth">Change Calendar</button>
 			</div>
 			<div id="grid" style="text-align:center"><?php require_once($_SERVER["DOCUMENT_ROOT"].'/ajax/date.php'); ?></div>
@@ -117,8 +133,178 @@
 	<p>Made in love from Strapper Team.</p>
 </div>
 <script>
-	$(document).ajaxStart(function(){$("#please_wait").show();});$(document).ajaxComplete(function(){$("#please_wait").hide();});$(document).ready(function(){var popup_displayed;function dayAssigner(){var elem=$("li.empty,li.dateli");for(i=0;i<elem.length;)$(elem[i++]).addClass("sun"),$(elem[i++]).addClass("mon"),$(elem[i++]).addClass("tue"),$(elem[i++]).addClass("wed"),$(elem[i++]).addClass("thu"),$(elem[i++]).addClass("fri"),$(elem[i++]).addClass("sat");$(".dateli.sat:eq(1),.dateli.sat:eq(3)").removeClass("dateli").addClass("empty");elem=$(".dateli.mon,.dateli.tue,.dateli.wed,.dateli.thu,.dateli.fri,.dateli.sat");}dayAssigner();$("#grid").on("click",".dateli.mon,.dateli.tue,.dateli.wed,.dateli.thu,.dateli.fri,.dateli.sat",function(){commonFunc(this);});$(document).on("keyup",function(e){if(e.keyCode===27&&popup_displayed===true){$("#popup-container").fadeOut("slow");popup_displayed=false;}});$("#changeMonth").on("click",function(){var month=$("#month").text();var year=$("#year").text();$.post('/ajax/date.php',{change:"1",month:month,year:year},function(data){$("#grid").html(data);dayAssigner();});});var absence;function commonFunc(e){popup_displayed=true;var mon,tue,wed,thu,fri,sat,html='';mon='<?php echo $mon;?>';tue='<?php echo $tue;?>';wed='<?php echo $wed;?>';thu='<?php echo $thu;?>';fri='<?php echo $fri;?>';sat='<?php echo $sat;?>';$("#popup-container").fadeIn("slow");switch($(e).attr("class")){case "dateli mon":html+=mon;break;case "dateli tue":html+=tue;break;case "dateli wed":html+=wed;break;case "dateli thu":html+=thu;break;case "dateli fri":html+=fri;break;case "dateli sat":html+=sat;break;default:html+="error:[code 19]";}$("#period_data").html(html);$("#options").html('<span class="valign"><input type="checkbox" id="nosub"/><label for="nosub">Overall attendance only</label></span><div class="button_set"><button id="save">Save</button><button id="cancel">Cancel</button></div>');var dataset=$(e).data("abs-set"),pa=[0,0,0,0,0,0,0,0,0,0],subjson=JSON.parse('<?php echo $_COOKIE["sub"];?>');if(dataset!==0){if(dataset==8){$(".toggle_input").prop("checked",true);}else{if(dataset.toString().length>1){numarr=dataset.split(",");for (i=0;i<numarr.length;i++){$(".toggle_input:eq("+numarr[i]+")").prop("checked",true);}}else{$(".toggle_input:eq("+dataset+")").prop("checked",true);}}}$("#nosub").on("change",function(){if($(this).prop("checked")){for(i=0;i<9;i++){pa[i]=0;}$(this).prop("disabled",true);$("#options label").css("color","gray");}});$(".subinputs").on("change",function(){var total=$(".subinputs").length,checked=0,name=$(this).next().text(),index=0;if($(this).prop("checked")==true){for(key in subjson){if(subjson[key]==name){pa[index]++;};index++;}pa[9]++;}else{for(key in subjson){if(subjson[key]==name){pa[index]--;};index++;}pa[9]--;}if($("#nosub").prop("checked")){for(i=0;i<9;i++){pa[i]=0;}}for(i=0;i<$(".subinputs").length;i++){if($(".subinputs:eq("+i+")").prop("checked")==true){checked++;}}if(checked===total){$("#whole").prop("checked",true);}else{$("#whole").prop("checked",false);}});$("#whole").on("click",function(){if($(this).prop("checked")==true){elmts=$(".subinputs").not(":checked").prop("checked",true).change();}else{elmts=$(".subinputs:checked").prop("checked",false).change();}});$("button#save").on("click",function(){var data='0',date,i,elmts,j=0;elmts=$(".toggle_input");if($(elmts[0]).prop("checked")==true){data='8';}else{for (i=1;i<elmts.length;i++){if($(elmts[i]).prop("checked")==true){if(j==0){data=i;}else{data=data+","+(i);}j++;}}}date=$(e).text();year=$("#year").html();absence=$(e).data("abs-set").toString();entry=(absence==0)?0:1;if(absence!=data){$.ajax({type:'post',url:'/ajax/data.php',data:{entry:entry,date:date,year:year,data:data,order:JSON.stringify(pa)}}).done(function(reply){if(reply=='0'){alert("Saved!");}else{alert("Sorry Something went wrong. [Code:"+reply+"]");}location.reload();});}else{alert("Nothing to save!");}});$("button#cancel").on("click",function(){$("#popup-container").fadeOut("medium");});}$("#prevMonth").on("click",function(){var a=parseInt($("#month").html()),b=parseInt($("#year").html());a--;0===a&&(a=12,b-=1);$("#month").html(a);$("#year").html(b)});$("#nextMonth").on("click",function(){var a=parseInt($("#month").html()),b=parseInt($("#year").html());a++;13==a&&(a=1,b+=1);$("#month").html(a);$("#year").html(b)});$("#popup-closer,#popup-closebutton").on("click",function(){$("#popup-container").fadeOut("slow");popup_displayed=!1});
+	$(document).ajaxStart(function(){
+		$("#please_wait").show();
+	});
+	$(document).ajaxComplete(function(){
+		$("#please_wait").hide();
+	});
+	$(document).ready(function(){
+		var popup_displayed;
+		function dayAssigner(){
+			var elem=$("li.empty,li.dateli");
+			for(i=0;i<elem.length;)
+				$(elem[i++]).addClass("sun"),$(elem[i++]).addClass("mon"),$(elem[i++]).addClass("tue"),$(elem[i++]).addClass("wed"),$(elem[i++]).addClass("thu"),$(elem[i++]).addClass("fri"),$(elem[i++]).addClass("sat");
+			$(".dateli.sat:eq(1),.dateli.sat:eq(3)").removeClass("dateli").addClass("empty");
+			elem=$(".dateli.mon,.dateli.tue,.dateli.wed,.dateli.thu,.dateli.fri,.dateli.sat");
+		}
+		dayAssigner();
+		$("#grid").on("click",".dateli.mon,.dateli.tue,.dateli.wed,.dateli.thu,.dateli.fri,.dateli.sat", function(){
+			commonFunc(this);
 		});
+		$(document).on("keyup",function(e){
+			if(e.keyCode===27&&popup_displayed===true){
+				$("#popup-container").fadeOut("slow");
+				popup_displayed=false;
+			}
+		});
+		$("#changeMonth").on("click",function(){
+			var month=$("#month").val();
+			var year=$("#year").val();
+			$.post('/ajax/date.php',{change:"1",month:month,year:year},function(data){
+				$("#grid").html(data);dayAssigner();
+			});
+		});
+		var absence;
+		function commonFunc(e){
+			popup_displayed=true;
+			var mon,tue,wed,thu,fri,sat,html='';
+			mon='<?php echo $mon;?>';
+			tue='<?php echo $tue;?>';
+			wed='<?php echo $wed;?>';
+			thu='<?php echo $thu;?>';
+			fri='<?php echo $fri;?>';
+			sat='<?php echo $sat;?>';
+			$("#popup-container").fadeIn("slow");
+			switch($(e).attr("class")){
+				case "dateli mon":html+=mon;break;
+				case "dateli tue":html+=tue;break;
+				case "dateli wed":html+=wed;break;
+				case "dateli thu":html+=thu;break;
+				case "dateli fri":html+=fri;break;
+				case "dateli sat":html+=sat;break;
+				default:html+="error:[code 19]";
+			}
+			$("#period_data").html(html);
+			$("#options").html('<span class="valign"><input type="checkbox" id="nosub"/><label for="nosub">Overall attendance only</label></span><div class="button_set"><button id="save">Save</button><button id="cancel">Cancel</button></div>');
+			var dataset=$(e).data("abs-set"),pa=[0,0,0,0,0,0,0,0,0,0],subjson=JSON.parse('<?php echo $_COOKIE["sub"];?>');
+			if(dataset!==0){
+				if(dataset==8){
+					$(".toggle_input").prop("checked",true);
+				}else{
+					if(dataset.toString().length>1){
+						numarr=dataset.split(",");
+						for (i=0;i<numarr.length;i++){
+							$(".toggle_input:eq("+numarr[i]+")").prop("checked",true);
+						}
+					}else{
+						$(".toggle_input:eq("+dataset+")").prop("checked",true);
+					}
+				}
+			}
+			$("#nosub").on("change",function(){
+				if($(this).prop("checked")){
+					for(i=0;i<9;i++){
+						pa[i]=0;
+					}
+					$(this).prop("disabled",true);
+					$("#options label").css("color","gray");
+				}
+			});
+			$(".subinputs").on("change",function(){
+				var total=$(".subinputs").length,checked=0,name=$(this).next().text(),index=0;
+				if($(this).prop("checked")==true){
+					for(key in subjson){
+						if(subjson[key]==name){
+							pa[index]++;
+						};
+						index++;
+					}
+					pa[9]++;
+				}else{
+					for(key in subjson){
+						if(subjson[key]==name){
+							pa[index]--;};index++;
+						}
+						pa[9]--;
+					}
+					if($("#nosub").prop("checked")){
+						for(i=0;i<9;i++){
+							pa[i]=0;
+						}
+					}
+					for(i=0;i<$(".subinputs").length;i++){
+						if($(".subinputs:eq("+i+")").prop("checked")==true){
+							checked++;
+						}
+					}
+					if(checked===total){
+						$("#whole").prop("checked",true);
+					}else{
+						$("#whole").prop("checked",false);
+					}
+				});
+			$("#whole").on("click",function(){
+				if($(this).prop("checked")==true){
+					elmts=$(".subinputs").not(":checked").prop("checked",true).change();
+				}else{
+					elmts=$(".subinputs:checked").prop("checked",false).change();
+				}
+			});
+			$("button#save").on("click",function(){
+				var data='0',date,i,elmts,j=0;elmts=$(".toggle_input");
+				if($(elmts[0]).prop("checked")==true){
+					data='8';
+				}else{
+					for (i=1;i<elmts.length;i++){
+						if($(elmts[i]).prop("checked")==true){
+							if(j==0){
+								data=i;
+							}else{
+								data=data+","+(i);}j++;
+							}
+						}
+					}
+					date=$(e).text();
+					year=$("#year").html();
+					absence=$(e).data("abs-set").toString();
+					entry=(absence==0)?0:1;
+					if(absence!=data){
+						$.ajax({type:'post',url:'/ajax/data.php',data:{entry:entry,date:date,year:year,data:data,order:JSON.stringify(pa)}}).done(function(reply){
+							if(reply=='0'){
+								alert("Saved!");
+							}else{
+								alert("Sorry Something went wrong. [Code:"+reply+"]");
+							}
+							location.reload();
+						});
+					}else{
+						alert("Nothing to save!");
+					}
+				});
+			$("button#cancel").on("click",function(){
+				$("#popup-container").fadeOut("medium");
+			});
+		}
+		// $("#prevMonth").on("click",function(){
+		// 	var a=parseInt($("#month").html()),b=parseInt($("#year").html());
+		// 	a--;
+		// 	0===a&&(a=12,b-=1);
+		// 	$("#month").html(a);
+		// 	$("#year").html(b);
+		// });
+		// $("#nextMonth").on("click",function(){
+		// 	var a=parseInt($("#month").html()),b=parseInt($("#year").html());
+		// 	a++;
+		// 	13==a&&(a=1,b+=1);
+		// 	$("#month").html(a);
+		// 	$("#year").html(b);
+		// });
+		$("#popup-closer,#popup-closebutton").on("click",function(){
+			$("#popup-container").fadeOut("slow");
+			popup_displayed=!1
+		});
+	});
 </script>
 <?php
 	}
