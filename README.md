@@ -11,10 +11,13 @@ We welcome all contributions towards development, bug fixes(listed in the [issue
 `master` branch is the main branch that is pushed to the OpenShift servers that currently hosts the website. `local` branch can be used for debugging purposes in your local machine. The only difference between these two branches were the database connectivity file `db/db.php`.
 
 If you're writing some code, then create a new branch named in the following structure
-<pre>git branch #<issueno></pre>
+<pre>git branch #issueno</pre>
 
 The `issueno` is the issue or bug fix that is listed in the [issues page][2]. After you're done with the code, create a new pull request and we will review and update the code.
 
 Some Extra Quote
 =====
 <pre>There nothing a code can't do in this world.</pre>
+
+[1][http://www.kec-cia.com]
+[2][https://github.com/gowthamgts/kec-cia/issues]
