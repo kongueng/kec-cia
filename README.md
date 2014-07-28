@@ -20,4 +20,4 @@ Some Extra Quote
 <pre>There nothing a code can't do in this world.</pre>
 
 [1]: http://www.kec-cia.com "Homepage of KEC-CIA"
-[2]: /gowthamgts/kec-cia/issues "Issues page of this project"
+[2]: https://github.com/gowthamgts/kec-cia/issues "Issues page of this project"
