@@ -24,17 +24,18 @@
 			$thu_json=json_decode($_COOKIE["thu"],true);
 			$fri_json=json_decode($_COOKIE["fri"],true);
 			$sat_json=json_decode($_COOKIE["sat"],true);
-			$mon='<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
-			$tue='<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
-			$wed='<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
-			$thu='<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
-			$fri='<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
-			$sat='<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
+                        $base = '<td class="valign"><input type="checkbox" class="toggle_input" id="whole"><label for="whole">All Day</label></td>';
+			$mon=$base;
+			$tue=$base;
+			$wed=$base;
+			$thu=$base;
+			$fri=$base;
+			$sat=$base;
 			for($i=0; $i<7; $i++){
 				$mon .= '<td class="valign"';
 				if($mon_json[$i][1]==3){
-					$mon .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="mon'.$i.'"><label for="mon'.$i.'" class="sublabels">'.$mon_json[$i][0].'</label></td>';$i+=2;
-					
+					$mon .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="mon'.$i.'"><label for="mon'.$i.'" class="sublabels">'.$mon_json[$i][0].'</label></td>';
+                                        $i+=2;
 				}else{
 					$mon .='><input type="checkbox" class="toggle_input subinputs" id="mon'.$i.'"><label for="mon'.$i.'" class="sublabels">'.$mon_json[$i][0].'</label></td>';
 				}
@@ -42,8 +43,8 @@
 			for($i=0; $i<7; $i++){
 				$tue .= '<td class="valign"';
 				if($tue_json[$i][1]==3){
-					$tue .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="tue'.$i.'"><label for="tue'.$i.'" class="sublabels">'.$tue_json[$i][0].'</label></td>';$i+=2;
-					
+					$tue .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="tue'.$i.'"><label for="tue'.$i.'" class="sublabels">'.$tue_json[$i][0].'</label></td>';
+                                        $i+=2;
 				}else{
 					$tue .='><input type="checkbox" class="toggle_input subinputs" id="tue'.$i.'"><label for="tue'.$i.'" class="sublabels">'.$tue_json[$i][0].'</label></td>';
 				}
@@ -51,8 +52,8 @@
 			for($i=0; $i<7; $i++){
 				$wed .= '<td class="valign"';
 				if($wed_json[$i][1]==3){
-					$wed .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="wed'.$i.'"><label for="wed'.$i.'" class="sublabels">'.$wed_json[$i][0].'</label></td>';$i+=2;
-					
+					$wed .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="wed'.$i.'"><label for="wed'.$i.'" class="sublabels">'.$wed_json[$i][0].'</label></td>';
+                                        $i+=2;
 				}else{
 					$wed .='><input type="checkbox" class="toggle_input subinputs" id="wed'.$i.'"><label for="wed'.$i.'" class="sublabels">'.$wed_json[$i][0].'</label></td>';
 				}
@@ -60,8 +61,8 @@
 			for($i=0; $i<7; $i++){
 				$thu .= '<td class="valign"';
 				if($thu_json[$i][1]==3){
-					$thu .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="thu'.$i.'"><label for="thu'.$i.'" class="sublabels">'.$thu_json[$i][0].'</label></td>';$i+=2;
-					
+					$thu .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="thu'.$i.'"><label for="thu'.$i.'" class="sublabels">'.$thu_json[$i][0].'</label></td>';
+                                        $i+=2;
 				}else{
 					$thu .='><input type="checkbox" class="toggle_input subinputs" id="thu'.$i.'"><label for="thu'.$i.'" class="sublabels">'.$thu_json[$i][0].'</label></td>';
 				}
@@ -69,8 +70,8 @@
 			for($i=0; $i<7; $i++){
 				$fri .= '<td class="valign"';
 				if($fri_json[$i][1]==3){
-					$fri .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="fri'.$i.'"><label for="fri'.$i.'" class="sublabels">'.$fri_json[$i][0].'</label></td>';$i+=2;
-					
+					$fri .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="fri'.$i.'"><label for="fri'.$i.'" class="sublabels">'.$fri_json[$i][0].'</label></td>';
+                                        $i+=2;
 				}else{
 					$fri .='><input type="checkbox" class="toggle_input subinputs" id="fri'.$i.'"><label for="fri'.$i.'" class="sublabels">'.$fri_json[$i][0].'</label></td>';
 				}
@@ -78,8 +79,8 @@
 			for($i=0; $i<7; $i++){
 				$sat .= '<td class="valign"';
 				if($sat_json[$i][1]==3){
-					$sat .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="sat'.$i.'"><label for="sat'.$i.'" class="sublabels">'.$sat_json[$i][0].'</label></td>';$i+=2;
-					
+					$sat .=' colspan=3><input type="checkbox" class="toggle_input subinputs" id="sat'.$i.'"><label for="sat'.$i.'" class="sublabels">'.$sat_json[$i][0].'</label></td>';
+                                        $i+=2;
 				}else{
 					$sat .='><input type="checkbox" class="toggle_input subinputs" id="sat'.$i.'"><label for="sat'.$i.'" class="sublabels">'.$sat_json[$i][0].'</label></td>';
 				}
@@ -110,8 +111,6 @@
 				}
 				?>
 				</select>
-				<!-- <p id="year" class="inline-block"><?php echo date('Y'); ?></p>-->
-				<!-- <p id="nextMonth" class="next"></p> -->
 				<button id="changeMonth">Change Calendar</button>
 			</div>
 			<div id="grid" style="text-align:center"><?php require_once($_SERVER["DOCUMENT_ROOT"].'/ajax/date.php'); ?></div>
@@ -292,20 +291,6 @@
 				$("#popup-container").fadeOut("medium");
 			});
 		}
-		// $("#prevMonth").on("click",function(){
-		// 	var a=parseInt($("#month").html()),b=parseInt($("#year").html());
-		// 	a--;
-		// 	0===a&&(a=12,b-=1);
-		// 	$("#month").html(a);
-		// 	$("#year").html(b);
-		// });
-		// $("#nextMonth").on("click",function(){
-		// 	var a=parseInt($("#month").html()),b=parseInt($("#year").html());
-		// 	a++;
-		// 	13==a&&(a=1,b+=1);
-		// 	$("#month").html(a);
-		// 	$("#year").html(b);
-		// });
 		$("#popup-closer,#popup-closebutton").on("click",function(){
 			$("#popup-container").fadeOut("slow");
 			popup_displayed=!1
