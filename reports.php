@@ -8,34 +8,38 @@ if(isset($_SESSION["uemailh"])) :
 ?>
 <div id="outer_container" class="clearfix">
 	<div id="container" class="container95">
-		<h1 class="notice cen" style="margin-top:0">Reports</h1>
-		<!-- <h2 class="tagline cen">We will get it done in a week!</h2> -->
+		<!--<h1 class="notice cen" style="margin-top:0">Reports</h1>-->
 		<div class="boxer" style="width:100%; height:400px;"></div>
 	</div>
 </div>
 <script type="text/javascript">
-	$(function () { 
+$(function () { 
     $('.boxer').highcharts({
         chart: {
-            type: 'bar'
+            type: 'column'
         },
         title: {
-            text: 'Fruit Consumption'
+            text: 'Absent Report'
         },
         xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
+            title: {
+                text: 'Subjects'
+            },
+            categories: ['TQM', 'NS', 'WT', 'WCN', 'ES', 'JT', 'NSL', 'ESL', 'WTL']
         },
         yAxis: {
+            min: 0,
+            max: 100,
             title: {
-                text: 'Fruit eaten'
+                text: 'Attendance Percent'
             }
         },
         series: [{
-            name: 'Jane',
-            data: [1, 0, 4]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
+            name: 'Class Average',
+            data: [55, 60, 50, 40, 55, 60, 12, 13, 11]
+        },{
+            name: 'You',
+            data: [50, 45, 46, 35, 49, 51, 9, 11, 10]
         }]
     });
 });
