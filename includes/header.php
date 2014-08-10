@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Testing - KEC-CIA &mdash; An ERP Management tool for KEC Students</title><meta charset="UTF-8"><link rel="stylesheet" href="/css/main.css" type="text/css"><link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<title>KEC-CIA &mdash; An ERP Management tool for KEC Students</title><meta charset="UTF-8"><link rel="stylesheet" href="/css/main.css" type="text/css"><link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'><script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<?php if($_SERVER["REQUEST_URI"] == "/timetable.php?edit_mode=true" ||$_SERVER["REQUEST_URI"] == "/timetable.php" ): ?><script type="text/javascript">
 	function allowDrop(e){
 		e.preventDefault()
