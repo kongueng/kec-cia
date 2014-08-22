@@ -48,6 +48,15 @@ if(isset($_SESSION["uemailh"])) :
 					<td><input type="number" class="s5 inputs" min="0" max="100" value="0"/></td>
 					<td><input type="number" class="s6 inputs" min="0" max="100" value="0"/></td>
 				</tr>
+				<tr>
+					<th>Total</th>
+					<td class="result1"></td>
+					<td class="result2"></td>
+					<td class="result3"></td>
+					<td class="result4"></td>
+					<td class="result5"></td>
+					<td class="result6"></td>
+				</tr>
 			</table>
 			<div id="options">
 				<button id="save">Save Permanently</button>
@@ -65,13 +74,35 @@ if(isset($_SESSION["uemailh"])) :
 				f: "fetch"
 			},
 			success: function(response){
+				ar = [0, 0, 0, 0, 0, 0];
+				console.log(ar);
 				response = JSON.parse(response);
 				for(i=0;i<18;i++) {
 					$(".inputs:eq("+i+")").val(response[i]);
+					switch (i%6) {
+						case 0:	ar[0] += parseInt(response[i]);
+						break;
+						case 1: ar[1] += parseInt(response[i]);
+						break;
+						case 2: ar[2] += parseInt(response[i]);
+						break;
+						case 3: ar[3] += parseInt(response[i]);
+						break;
+						case 4: ar[4] += parseInt(response[i]);
+						break;
+						case 5: ar[5] += parseInt(response[i]);
+						break;
+					}
 				}
+				for(i=0; i<6; i++) {
+					ar[i] = ar[i]/10;
+					$(".result"+(i+1)).html(ar[i] + "/30");
+				}
+				console.log(ar);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("Status: " + textStatus); alert("Error: " + errorThrown);
+				alert("Status: " + textStatus);
+				alert("Error: " + errorThrown);
 			}
 		})
 		$(".inputs").on("change",function(){
