@@ -1,6 +1,6 @@
 KEC-CIA
 =====
-An online web application for tracking CIA(Continuous Internal Assessment) marks of students of Kongu Engineering College. All you have to do is to visit [the site][1] and signup to get started.
+An online web application for tracking *CIA(Continuous Internal Assessment)* marks of students of Kongu Engineering College. All you have to do is to visit [the site][1] and signup to get started.
 
 There is a good possibility that your class timetable is present in our database. If not, you will be prompted to enter the timetable data.
 
