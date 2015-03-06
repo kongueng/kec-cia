@@ -4,10 +4,9 @@ An online web application for tracking *CIA(Continuous Internal Assessment)* mar
 
 There is a good possibility that your class timetable is present in our database. If not, you will be prompted to enter the timetable data.
 
-NOTICE
+PLEASE READ THIS BEFORE PROCEEDING
 =====
-1. The domain name `kec-cia.com` will expire soon at 23rd February, 2015 and it will there after point to `cia-kec.rhcloud.com`, since the site is currently deployed at [OpenShift][3].
-2. This project has been started as a geeky thing and so no software paradigms were followed during development. Please use it for educational purposes. I tried to maintain my code more readable, in case if you find it difficult please ask your questions at the issues page.
+This project has been started as a geeky thing and so no software paradigms were followed during development. Please use it for educational purposes. I tried to maintain my code more readable, in case if you find it difficult please ask your questions at the issues page.
 
 Contributing
 =====
@@ -24,6 +23,6 @@ Some Extra Quote
 =====
 <pre>There nothing a code can't do in this world.</pre>
 
-[1]: http://www.kec-cia.com "Homepage of KEC-CIA"
+[1]: http://cia-kec.rhcloud.com/ "Homepage of KEC-CIA"
 [2]: https://github.com/gowthamgts/kec-cia/issues "Issues page of this project"
 [3]: https://openshift.com "Go to OpenShift website"
