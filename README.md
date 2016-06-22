@@ -1,12 +1,10 @@
-KEC-CIA
+Note: This project contains code that will just run. I've developed this project as a beginner back then and no software methodologies were followed. Please consider this as an example of using Git and not the code itself.
+
+KEC-CIA 
 =====
 An online web application for tracking *CIA(Continuous Internal Assessment)* marks of students of Kongu Engineering College. All you have to do is to visit [the site][1] and signup to get started.
 
 There is a good possibility that your class timetable is present in our database. If not, you will be prompted to enter the timetable data.
-
-PLEASE READ THIS BEFORE PROCEEDING
-=====
-This project has been started as a geeky thing and so no software paradigms were followed during development. Please use it for educational purposes. I tried to maintain my code more readable, in case if you find it difficult please ask your questions at the issues page.
 
 Contributing
 =====
