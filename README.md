@@ -1,6 +1,4 @@
-Note: This project contains code that will just run. I've developed this project as a beginner back then and no software methodologies were followed. Please consider this as an example of using Git and not the code itself.
-
-KEC-CIA 
+KEC-CIA
 =====
 An online web application for tracking *CIA(Continuous Internal Assessment)* marks of students of Kongu Engineering College. All you have to do is to visit [the site][1] and signup to get started.
 
@@ -16,10 +14,6 @@ If you're writing some code, then create a new branch named in the following str
 <pre>git branch #issueno</pre>
 
 The `issueno` is the issue or bug fix that is listed in the [issues page][2]. After you're done with the code, create a new pull request and we will review and update the code.
-
-Some Extra Quote
-=====
-<pre>There nothing a code can't do in this world.</pre>
 
 [1]: http://cia-kec.rhcloud.com/ "Homepage of KEC-CIA"
 [2]: https://github.com/gowthamgts/kec-cia/issues "Issues page of this project"
